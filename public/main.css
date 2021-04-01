@@ -94,18 +94,90 @@ body {
   margin-bottom: 1%;
 }
 
-.draggable {
+.edit {
   padding: 0.5rem;
   margin: 1%;
   background-color: rgba(255, 255, 255, 0.74);
   border: 1px solid black;
   border-radius: 5px;
   cursor: move;
-  width: 100%;
+  width: 99%;
 }
 
 .draggable.dragging {
   opacity: 0.3;
+}
+
+.note-container {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+/* Add Button Group */
+.add-new-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-new {
+  color: antiquewhite;
+  padding: 1px 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+  border-radius: 5px;
+  transition: all 0.1s ease-in;
+  user-select: none;
+}
+
+.add-new:hover {
+  background-color: rgba(255, 255, 255, 0.74);
+  color: black;
+}
+
+.add-new:active {
+  transform: scale(0.97);
+}
+
+.solid {
+  color: #ffffff;
+  display: none;
+}
+
+.solid:hover {
+  transition: unset;
+  filter: brightness(115%);
+  color: black;
+}
+
+.plus-sign {
+  font-size: 1.5rem;
+  margin-right: 5px;
+  position: relative;
+  top: -3px;
+}
+.add-container {
+  padding: 5px;
+  display: none;
+}
+
+.add-item {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.74);
+  border: 1px solid black;
+  border-radius: 5px;
+  resize: none;
+  color: black;
+  padding: 10px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.158);
 }
 
 footer {

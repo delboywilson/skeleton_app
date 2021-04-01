@@ -3,37 +3,147 @@
     <div class="column">
       <div class="blue-column container">
         <h3 class="column-heading">Ideas</h3>
-        <input type="text" class="draggable" draggable="true" placeholder="new ideas go here"></input>
-        <input type="text" class="draggable" draggable="true"></input>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true" placeholder="new ideas go here"></input><a href="#"><span class="delete-btn" id="delete" onclick="deleteItem()">X</span></a>
+        </div>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn" id="delete" onclick="deleteItem()">X</span></a>
+        </div>
       </div>
+      <!-- buttons -->
+      <div class="blue-column">
+        <div class="add-new-group">
+          <div class="add-new" onclick="showInputBox(0)">
+            <span class="plus-sign">+</span>
+            <span>Add new item</span>
+          </div>
+          <div class="add-new solid" onclick="hideInputBox(0)">
+            <span>Save item</span>
+          </div>
+        </div>
+        <div class="add-container">
+          <div class="note-container draggable">
+            <input class="add-item" value=""></input>
+          </div>
+        </div>
+      </div>
+        <!--  -->
     </div>
     <div class="column">
       <div class="red-column container">
         <h3 class="column-heading">To Do</h3>
-        <input type="text" class="draggable" draggable="true" placeholder="new to do"></input>
-        <input type="text" class="draggable" draggable="true"></input>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true" placeholder="new to do"></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
       </div>
+            <!-- buttons -->
+            <div class="red-column">
+              <div class="add-new-group">
+                <div class="add-new" onclick="showInputBox(1)">
+                  <span class="plus-sign">+</span>
+                  <span>Add new item</span>
+                </div>
+                <div class="add-new solid" onclick="hideInputBox(1)">
+                  <span>Save item</span>
+                </div>
+              </div>
+              <div class="add-container">
+                <div class="note-container draggable">
+                  <input class="add-item" value=""></input>
+                </div>
+              </div>
+            </div>
+              <!--  -->
     </div>
     <div class="column">
       <div class="orange-column container">
         <h3 class="column-heading">Doing</h3>
-        <input type="text" class="draggable" draggable="true" placeholder="in progress..."></input>
-        <input type="text" class="draggable" draggable="true"></input>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true" placeholder="in progress..."></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
       </div>
+            <!-- buttons -->
+            <div class="orange-column">
+              <div class="add-new-group">
+                <div class="add-new" onclick="showInputBox(2)">
+                  <span class="plus-sign">+</span>
+                  <span>Add new item</span>
+                </div>
+                <div class="add-new solid" onclick="hideInputBox(2)">
+                  <span>Save item</span>
+                </div>
+              </div>
+              <div class="add-container">
+                <div class="note-container draggable">
+                  <input class="add-item" value=""></input>
+                </div>
+              </div>
+            </div>
+              <!--  -->
     </div>
     <div class="column">
       <div class="green-column container">
         <h3 class="column-heading">Done</h3>
-        <input type="text" class="draggable" draggable="true" placeholder="completed!"></input>
-        <input type="text" class="draggable" draggable="true"></input>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true" placeholder="completed!"></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
       </div>
+            <!-- buttons -->
+            <div class="green-column">
+              <div class="add-new-group">
+                <div class="add-new" onclick="showInputBox(3)">
+                  <span class="plus-sign">+</span>
+                  <span>Add new item</span>
+                </div>
+                <div class="add-new solid" onclick="hideInputBox(3)">
+                  <span>Save item</span>
+                </div>
+              </div>
+              <div class="add-container">
+                <div class="note-container draggable">
+                  <input class="add-item" value=""></input>
+                </div>
+              </div>
+            </div>
+              <!--  -->
     </div>
     <div class="column">
       <div class="yellow-column container">
-        <h3 class="column-heading">Thoughts?</h3>
-        <input type="text" class="draggable" draggable="true" placeholder="what comes next?"></input>
-        <input type="text" class="draggable" draggable="true"></input>
+        <h3 class="column-heading">Follow Up</h3>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true" placeholder="what comes next?"></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
+        <div class="note-container draggable">
+          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
+        </div>
       </div>
+            <!-- buttons -->
+            <div class="yellow-column">
+              <div class="add-new-group">
+                <div class="add-new" onclick="showInputBox(4)">
+                  <span class="plus-sign">+</span>
+                  <span>Add new item</span>
+                </div>
+                <div class="add-new solid" onclick="hideInputBox(4)">
+                  <span>Save item</span>
+                </div>
+              </div>
+              <div class="add-container">
+                <div class="note-container draggable">
+                  <input class="add-item" value=""></input>
+                </div>
+              </div>
+            </div>
+              <!--  -->
     </div>
   </div>
 </div>

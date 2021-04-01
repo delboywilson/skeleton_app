@@ -43,6 +43,44 @@ function getDragAfterElement(container, y) {
   ).element;
 }
 
+// add-new and save functions
+
+// get add-new and save buttons
+const addNew = document.querySelectorAll(".add-new:not(.solid)");
+const saveItem = document.querySelectorAll(".solid");
+const addItemContainers = document.querySelectorAll(".add-container");
+const addItems = document.querySelectorAll(".add-item");
+
+function showInputBox(column) {
+  addNew[column].style.visibility = "hidden";
+  saveItem[column].style.display = "flex";
+  addItemContainers[column].style.display = "flex";
+  addItems[column].focus();
+}
+
+function hideInputBox(column) {
+  addNew[column].style.visibility = "visible";
+  saveItem[column].style.display = "none";
+  addItemContainers[column].style.display = "none";
+  addToColumn(column);
+}
+
+// add to column list, reset textbox
+function addToColumn(column) {
+  const itemText = addItems[column].value;
+  // const selectedArray = listArrays[column];
+  // selectedArray.push(itemText);
+  console.log(itemText);
+  addItems[column].value = "";
+  // updateDOM(column);
+}
+
+// delete item function - each input box needs individual id and this function needs to target that
+function deleteItem() {
+  let deleteItem = document.getElementById("delete");
+  deleteItem.remove();
+}
+
 // modal
 
 // access buttons and modal
