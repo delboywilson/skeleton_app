@@ -1,14 +1,8 @@
 <div class="main-wrapper">
   <div class="row">
     <div class="column">
-      <div class="blue-column container">
+      <div class="blue-column container" id="ideas-group">
         <h3 class="column-heading">Ideas</h3>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true" placeholder="new ideas go here"></input><a href="#"><span class="delete-btn" id="delete" onclick="deleteItem()">X</span></a>
-        </div>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn" id="delete" onclick="deleteItem()">X</span></a>
-        </div>
       </div>
       <!-- buttons -->
       <div class="blue-column">
@@ -30,14 +24,8 @@
         <!--  -->
     </div>
     <div class="column">
-      <div class="red-column container">
+      <div class="red-column container" id="todo-group">
         <h3 class="column-heading">To Do</h3>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true" placeholder="new to do"></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
       </div>
             <!-- buttons -->
             <div class="red-column">
@@ -59,14 +47,8 @@
               <!--  -->
     </div>
     <div class="column">
-      <div class="orange-column container">
+      <div class="orange-column container" id="doing-group">
         <h3 class="column-heading">Doing</h3>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true" placeholder="in progress..."></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
       </div>
             <!-- buttons -->
             <div class="orange-column">
@@ -88,14 +70,8 @@
               <!--  -->
     </div>
     <div class="column">
-      <div class="green-column container">
+      <div class="green-column container" id="done-group">
         <h3 class="column-heading">Done</h3>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true" placeholder="completed!"></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
       </div>
             <!-- buttons -->
             <div class="green-column">
@@ -117,14 +93,8 @@
               <!--  -->
     </div>
     <div class="column">
-      <div class="yellow-column container">
+      <div class="yellow-column container" id="follow-up-group">
         <h3 class="column-heading">Follow Up</h3>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true" placeholder="what comes next?"></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
-        <div class="note-container draggable">
-          <input class="edit draggable" draggable="true"></input><a href="#"><span class="delete-btn">X</span></a>
-        </div>
       </div>
             <!-- buttons -->
             <div class="yellow-column">
@@ -148,7 +118,7 @@
   </div>
 </div>
 <!-- modal -->
-<button class="button" id="button-open" type="submit">Open me</button>
+<button class="button" id="button-open" type="submit"><i class="fas fa-cheese fa-fw"></i> Eat me</button>
 <div class="modal-container" id="modal-container-id">
   <div class="modal">
     <div class="modal-text">
@@ -169,6 +139,13 @@
       >
       <p>Chuck Close - Artist</p>
     </div>
-    <button class="button" id="button-close">Close me</button>
+    <button class="button" id="button-close"><i class="fas fa-flask fa-fw"></i> drink me</button>
   </div>
 </div>
+
+<!-- <div class="note-container draggable">
+          <input class="edit draggable" id="0" draggable="true" placeholder="new ideas go here"></input><a href="#"><span class="delete-btn" onclick="deleteItem()">X</span></a>
+        </div>
+        <div class="note-container draggable">
+          <input class="edit draggable" id="1" draggable="true"></input><a href="#"><span class="delete-btn" onclick="deleteItem()">X</span></a>
+        </div> -->

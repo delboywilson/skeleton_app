@@ -68,14 +68,14 @@ body {
   background-color: rgba(128, 0, 0, 0.61);
 }
 
-.green-column {
-  padding: 0.5rem;
-  background-color: rgba(21, 128, 0, 0.603);
-}
-
 .orange-column {
   padding: 0.5rem;
   background-color: rgba(128, 68, 0, 0.603);
+}
+
+.green-column {
+  padding: 0.5rem;
+  background-color: rgba(21, 128, 0, 0.603);
 }
 
 .yellow-column {
@@ -101,7 +101,7 @@ body {
   border: 1px solid black;
   border-radius: 5px;
   cursor: move;
-  width: 99%;
+  width: 98%;
 }
 
 .draggable.dragging {
@@ -112,12 +112,13 @@ body {
   display: inline-block;
   position: relative;
   overflow: hidden;
+  border-radius: 6px;
   width: 100%;
 }
 .delete-btn {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 6px;
 }
 
 /* Add Button Group */
