@@ -123,7 +123,7 @@ function filterArray(array) {
   return filteredArray;
 }
 
-// CREATE ELEMENTS
+// create element functions
 
 function createDeleteBtn() {
   const span = document.createElement("span");
@@ -136,7 +136,7 @@ function createDeleteBtn() {
 
 function createInputBox(value, column, index) {
   const input = document.createElement("input");
-  input.classList.add("edit", "draggable");
+  input.classList.add("edit");
   input.value = value;
   input.id = `${column}${index}`;
   input.draggable = true;
@@ -199,67 +199,32 @@ function updateDOM(value, column) {
 
   //  ideas column
   ideasGroupArray.forEach((ideasItem, index) => {
-    createItem(ideasGroup, 0, ideasItem, index);
+    createContainer(ideasGroup, 0, ideasItem, index);
   });
   ideasGroupArray = filterArray(ideasGroupArray);
   //  todo column
   todoGroupArray.forEach((todoItem, index) => {
-    createItem(todoGroup, 1, todoItem, index);
+    createContainer(todoGroup, 1, todoItem, index);
   });
   todoGroupArray = filterArray(todoGroupArray);
   //  doing column
   doingGroupArray.forEach((doingItem, index) => {
-    createItem(doingGroup, 2, doingItem, index);
+    createContainer(doingGroup, 2, doingItem, index);
   });
   doingGroupArray = filterArray(doingGroupArray);
   //  done column
   doneGroupArray.forEach((doneItem, index) => {
-    createItem(doneGroup, 3, doneItem, index);
+    createContainer(doneGroup, 3, doneItem, index);
   });
   doneGroupArray = filterArray(doneGroupArray);
   //  followUp column
   followUpGroupArray.forEach((followUpItem, index) => {
-    createItem(followUpGroup, 4, followUpItem, index);
+    createContainer(followUpGroup, 4, followUpItem, index);
   });
   followUpGroupArray = filterArray(followUpGroupArray);
 
   updatedOnLoad = true;
   updateSavedColumns();
-}
-
-// update item - delete if necessary, or update array value
-function updateItem(id, column) {
-  const selectedArray = groupArrays[column];
-  const selectedColumn = groupColumns[column].children;
-  if (!draggable) {
-    if (!selectedColumn[id].value) {
-      delete selectedArray[id];
-    } else {
-      selectedArray[id] = selectedColumn[id].value;
-    }
-    updateDOM();
-  }
-}
-
-// allows arrays to reflect drag and drop items
-function rebuildArrays() {
-  ideasGroupArray = [];
-  for (let i = 0; i < ideasGroup.children.length; i++) {
-    ideasGroupArray.push(ideasGroup.children[i].value);
-  }
-  todoGroupArray = [];
-  for (let i = 0; i < todoGroup.children.length; i++) {
-    todoGroupArray.push(todoGroup.children[i].value);
-  }
-  doingGroupArray = [];
-  for (let i = 0; i < doingGroup.children.length; i++) {
-    doingGroupArray.push(doingGroup.children[i].value);
-  }
-  doneGroupArray = [];
-  for (let i = 0; i < doneGroup.children.length; i++) {
-    doneGroupArray.push(doneGroup.children[i].value);
-  }
-  updateDOM();
 }
 
 // add-new and save functions
@@ -289,6 +254,41 @@ function addToColumn(column) {
   addItems[column].value = "";
 
   updateDOM(itemText, column);
+}
+
+// update item - delete if necessary, or update array value
+function updateItem(id, column) {
+  const selectedArray = groupArrays[column];
+  const selectedColumn = groupColumns[column].children;
+  if (!draggables) {
+    if (!selectedColumn[id].value) {
+      delete selectedArray[id];
+    } else {
+      selectedArray[id] = selectedColumn[id].value;
+    }
+    updateDOM();
+  }
+}
+
+// allows arrays to reflect drag and drop items
+function rebuildArrays() {
+  ideasGroupArray = [];
+  for (let i = 0; i < ideasGroup.children.length; i++) {
+    ideasGroupArray.push(ideasGroup.children[i].value);
+  }
+  todoGroupArray = [];
+  for (let i = 0; i < todoGroup.children.length; i++) {
+    todoGroupArray.push(todoGroup.children[i].value);
+  }
+  doingGroupArray = [];
+  for (let i = 0; i < doingGroup.children.length; i++) {
+    doingGroupArray.push(doingGroup.children[i].value);
+  }
+  doneGroupArray = [];
+  for (let i = 0; i < doneGroup.children.length; i++) {
+    doneGroupArray.push(doneGroup.children[i].value);
+  }
+  updateDOM();
 }
 
 // delete item function - each input box needs individual id and this function needs to target that
