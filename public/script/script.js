@@ -1,6 +1,43 @@
-// // drop and drag feature
+// get column groups
+const groupColumns = document.querySelectorAll(".container");
+const ideasGroup = document.getElementById("ideas-group");
+const todoGroup = document.getElementById("todo-group");
+const doingGroup = document.getElementById("doing-group");
+const doneGroup = document.getElementById("done-group");
+const followUpGroup = document.getElementById("follow-up-group");
+const groupOfElements = [
+  ideasGroup,
+  todoGroup,
+  doingGroup,
+  doneGroup,
+  followUpGroup,
+];
+// get add-new and save buttons
+const addNew = document.querySelectorAll(".add-new:not(.solid)");
+const saveItem = document.querySelectorAll(".solid");
+const addItemContainers = document.querySelectorAll(".add-container");
+const addItems = document.querySelectorAll(".add-item");
+// access modal buttons
+const buttonOpen = document.getElementById("button-open");
+const buttonClose = document.getElementById("button-close");
+const modal = document.getElementById("modal-container-id");
+// for drop and drag feature
 const draggables = document.querySelectorAll(".draggable");
 const containers = document.querySelectorAll(".container");
+
+// set initial condition
+let updatedOnLoad = false;
+
+// initialize arrays
+let ideasGroupArray = [];
+let todoGroupArray = [];
+let doingGroupArray = [];
+let doneGroupArray = [];
+let followUpGroupArray = [];
+let groupArrays = [];
+
+// DROP & DRAG FUNCTIONS
+
 // add and remove class on dragging item
 draggables.forEach((draggable) => {
   draggable.addEventListener("dragstart", () => {
@@ -16,11 +53,12 @@ containers.forEach((container) => {
     e.preventDefault();
     const afterElement = getDragAfterElement(container, e.clientY);
     const draggable = document.querySelector(".dragging");
+
     if (afterElement == null) {
       container.appendChild(draggable);
-      rebuildArrays();
+      // rebuildArrays();
     } else container.insertBefore(draggable, afterElement);
-    rebuildArrays();
+    // rebuildArrays();
   });
 });
 // find position of dragged element in relation to other elements
@@ -44,25 +82,6 @@ function getDragAfterElement(container, y) {
     }
   ).element;
 }
-
-// get column groups
-const groupColumns = document.querySelectorAll(".container");
-const ideasGroup = document.getElementById("ideas-group");
-const todoGroup = document.getElementById("todo-group");
-const doingGroup = document.getElementById("doing-group");
-const doneGroup = document.getElementById("done-group");
-const followUpGroup = document.getElementById("follow-up-group");
-
-// items
-let updatedOnLoad = false;
-
-// initialize arrays
-let ideasGroupArray = [];
-let todoGroupArray = [];
-let doingGroupArray = [];
-let doneGroupArray = [];
-let followUpGroupArray = [];
-let groupArrays = [];
 
 // get arrays from localStorage if available, set default values if not
 // change to db when working here
@@ -104,39 +123,80 @@ function filterArray(array) {
   return filteredArray;
 }
 
-// creat DOM elements for each item
-function createItem(columnElement, column, item, index) {
-  const groupElement = document.createElement("div");
-  groupElement.classList.add("note-container", "draggable");
+// CREATE ELEMENTS
 
-  const inputElement = document.createElement("input");
-  inputElement.classList.add("edit", "draggable");
-  inputElement.value = item;
-  inputElement.id = `${column}${index}`;
-  inputElement.draggable = true;
-
-  const anchor = document.createElement("a");
-  anchor.href = "#";
-
+function createDeleteBtn() {
   const span = document.createElement("span");
   span.classList.add("delete-btn");
   span.innerText = "X";
   span.setAttribute("onclick", "deleteItem()");
-  span.setAttribute("onfocusout", `updateItem(${index}, ${column})`);
-  // append to group
-  columnElement.appendChild(groupElement);
-  groupElement.appendChild(inputElement);
-  groupElement.appendChild(anchor);
-  anchor.appendChild(span);
+
+  return span;
 }
+
+function createInputBox(value, column, index) {
+  const input = document.createElement("input");
+  input.classList.add("edit", "draggable");
+  input.value = value;
+  input.id = `${column}${index}`;
+  input.draggable = true;
+
+  return input;
+}
+
+function createContainer(value, column, index) {
+  const div = document.createElement("div");
+  div.classList.add("note-container", "draggable");
+  div.appendChild(createInputBox(value, column, index));
+  div.appendChild(createDeleteBtn());
+  div.addEventListener("dragstart", () => {
+    div.classList.add("dragging");
+  });
+  div.addEventListener("dragend", () => {
+    div.classList.remove("dragging");
+  });
+
+  return div;
+}
+
+// // create DOM elements for each item
+// function createItem(columnElement, column, item, index) {
+//   const groupElement = document.createElement("div");
+//   groupElement.classList.add("note-container", "draggable");
+
+//   const inputElement = document.createElement("input");
+//   inputElement.classList.add("edit", "draggable");
+//   inputElement.value = item;
+//   inputElement.id = `${column}${index}`;
+//   inputElement.draggable = true;
+
+//   const anchor = document.createElement("a");
+//   anchor.href = "#";
+
+//   const span = document.createElement("span");
+//   span.classList.add("delete-btn");
+//   span.innerText = "X";
+//   span.setAttribute("onclick", "deleteItem()");
+//   span.setAttribute("onfocusout", `updateItem(${index}, ${column})`);
+//   // append to group
+//   columnElement.appendChild(groupElement);
+//   groupElement.appendChild(inputElement);
+//   groupElement.appendChild(anchor);
+//   anchor.appendChild(span);
+// }
 
 // update columns in DOM - reset HTML, filter array, update localStorage
 
-function updateDOM() {
+function updateDOM(value, column) {
   // check localStorage once
-  if (!updatedOnLoad) {
+  if (updatedOnLoad) {
     getSavedColumns();
+    console.log(groupArrays[column]);
+    const newItem = createContainer(value, column);
+    groupOfElements[column].appendChild(newItem);
+    return;
   }
+
   //  ideas column
   ideasGroupArray.forEach((ideasItem, index) => {
     createItem(ideasGroup, 0, ideasItem, index);
@@ -204,12 +264,6 @@ function rebuildArrays() {
 
 // add-new and save functions
 
-// get add-new and save buttons
-const addNew = document.querySelectorAll(".add-new:not(.solid)");
-const saveItem = document.querySelectorAll(".solid");
-const addItemContainers = document.querySelectorAll(".add-container");
-const addItems = document.querySelectorAll(".add-item");
-
 // add/save/hide new item box
 function showInputBox(column) {
   addNew[column].style.visibility = "hidden";
@@ -227,14 +281,14 @@ function hideInputBox(column) {
 
 // add to column list, reset input
 function addToColumn(column) {
+  console.log(groupArrays);
   const itemText = addItems[column].value;
   const selectedArray = groupArrays[column];
   selectedArray.push(itemText);
-  console.log(itemText);
-  console.log(selectedArray);
   // reset
   addItems[column].value = "";
-  updateDOM(column);
+
+  updateDOM(itemText, column);
 }
 
 // delete item function - each input box needs individual id and this function needs to target that
@@ -244,11 +298,6 @@ function deleteItem() {
 }
 
 // modal
-
-// access buttons and modal
-const buttonOpen = document.getElementById("button-open");
-const buttonClose = document.getElementById("button-close");
-const modal = document.getElementById("modal-container-id");
 
 // close modal and reset form
 buttonOpen.addEventListener("click", function (e) {
