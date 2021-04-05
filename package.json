@@ -4,6 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "create-database": "createdb skeleton",
+    "drop-database": "dropdb skeleton",
+    "create-tables": "psql -U Delboy -h localhost -p 5432 -d skeleton -f sql/create-tables.sql",
+    "seed-tables": "psql -U Delboy -h localhost -p 5432 -d skeleton -f sql/seed-tables.sql",
     "dev": "nodemon -e js,ejs,css app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

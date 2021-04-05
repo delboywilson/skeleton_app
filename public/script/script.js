@@ -185,19 +185,19 @@ function updateItem(id, column) {
 function rebuildArrays() {
   ideasGroupArray = [];
   for (let i = 0; i < ideasGroup.children.length; i++) {
-    ideasGroupArray.push(ideasGroup.children[i].textContent);
+    ideasGroupArray.push(ideasGroup.children[i].value);
   }
   todoGroupArray = [];
   for (let i = 0; i < todoGroup.children.length; i++) {
-    todoGroupArray.push(todoGroup.children[i].textContent);
+    todoGroupArray.push(todoGroup.children[i].value);
   }
   doingGroupArray = [];
   for (let i = 0; i < doingGroup.children.length; i++) {
-    doingGroupArray.push(doingGroup.children[i].textContent);
+    doingGroupArray.push(doingGroup.children[i].value);
   }
   doneGroupArray = [];
   for (let i = 0; i < doneGroup.children.length; i++) {
-    doneGroupArray.push(doneGroup.children[i].textContent);
+    doneGroupArray.push(doneGroup.children[i].value);
   }
   updateDOM();
 }
@@ -231,6 +231,7 @@ function addToColumn(column) {
   const selectedArray = groupArrays[column];
   selectedArray.push(itemText);
   console.log(itemText);
+  console.log(selectedArray);
   // reset
   addItems[column].value = "";
   updateDOM(column);
@@ -238,7 +239,7 @@ function addToColumn(column) {
 
 // delete item function - each input box needs individual id and this function needs to target that
 function deleteItem() {
-  let deleteItem = document.getElementById("0");
+  let deleteItem = document.getElementById("id");
   deleteItem.remove();
 }
 
